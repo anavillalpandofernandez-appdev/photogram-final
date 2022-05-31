@@ -15,5 +15,12 @@ class ApplicationController < ActionController::Base
       redirect_to("/user_sign_in", { :notice => "You have to sign in first." })
     end
   end
-
+  def users
+    @users = User.all
+    render("/users/users.html.erb")
+  end
+  def show
+    @users = User.all
+    render("/users/users.html.erb")
+  end
 end
