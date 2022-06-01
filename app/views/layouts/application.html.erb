@@ -28,6 +28,7 @@
         </a>
       </li>
 
+        <% if @current_user.blank? %>
         <li>
           <a href="/user_sign_in">
             Sign in
@@ -39,7 +40,31 @@
             Sign up
           </a>
         </li>
+      <% else %>
+        <li>
+          <a href="/edit_user_profile">
+            <%= @current_user.username %>
+          </a>
+        </li>
+
+        <li>
+          <a href="/user_sign_out">
+            Sign out
+          </a>
+        </li>
+      <% end %>
+
     </ul>
+<% if notice.present? %>
+      <div>
+        <%= notice %>
+      </div>
+    <% end %>
+    <% if alert.present? %>
+      <div>
+        <%= alert %>
+      </div>
+    <% end %>
 
     <%= yield %>
   </body>
