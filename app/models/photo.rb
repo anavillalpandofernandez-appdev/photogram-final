@@ -12,6 +12,8 @@
 #  owner_id       :integer
 #
 class Photo < ApplicationRecord
+  mount_uploader :image, ImageUploader
+
   validates(:poster, { :presence => true })
   validates(:image, { :presence => true })
   has_many :comments, :dependent => :destroy
@@ -19,7 +21,5 @@ class Photo < ApplicationRecord
   belongs_to :poster, :class_name => "User", :foreign_key => "owner_id"
   has_many :commenters, :through => :comments, :source => :author
   has_many :fans, :through => :likes, :source => :fan
-  has_many :viewers, :through => :owner, :source => :leaders
-  has_many :discovering, :through => :fans, :source => :leaders
-
+ 
 end
