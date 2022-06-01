@@ -3,7 +3,8 @@ class ApplicationController < ActionController::Base
   
   # Uncomment line 5 in this file and line 3 in UserAuthenticationController if you want to force users to sign in before any other actions.
   before_action(:force_user_sign_in)
-  
+  skip_before_action(:force_user_sign_in, { :only => [:users] })
+
   def load_current_user
     the_id = session[:user_id]
     
@@ -22,5 +23,9 @@ class ApplicationController < ActionController::Base
   def show
     @the_user = User.where(:username=> params.fetch("username")).at(0)
     render("/users/show.html.erb")
+  end
+  def feed
+    @the_user = User.where(:username=> params.fetch("username")).at(0)
+    render("/users/feed.html.erb")
   end
 end

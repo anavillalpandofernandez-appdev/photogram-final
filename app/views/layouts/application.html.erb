@@ -10,12 +10,11 @@
     <!-- Make it responsive to small screens -->
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <%= csp_meta_tag %>
-
     <%= stylesheet_link_tag    'application', media: 'all' %>
   </head>
 
   <body>
-  <ul>
+    <ul>
       <li>
         <a href="/users">
           All users
@@ -28,7 +27,7 @@
         </a>
       </li>
 
-        <% if @current_user.blank? %>
+      <% if @current_user.blank? %>
         <li>
           <a href="/user_sign_in">
             Sign in
@@ -53,9 +52,9 @@
           </a>
         </li>
       <% end %>
-
     </ul>
-<% if notice.present? %>
+
+    <% if notice.present? %>
       <div>
         <%= notice %>
       </div>
@@ -65,7 +64,6 @@
         <%= alert %>
       </div>
     <% end %>
-
     <%= yield %>
   </body>
 </html>
